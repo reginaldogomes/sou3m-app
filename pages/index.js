@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Home = () => (
-  <Container>
-    <Heading>sou 3m </Heading>
-  </Container>
+    <Container>
+      <Heading>sou 3m </Heading>
+    </Container>
 )
 
 const Container = styled.div`
