@@ -1,5 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
+import Link from 'next/link'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import AppBar from '@material-ui/core/AppBar'
@@ -17,7 +18,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import InboxIcon from '@material-ui/icons/MoveToInbox'
 import MailIcon from '@material-ui/icons/Mail'
-
 
 const drawerWidth = 240
 
@@ -96,7 +96,7 @@ export default function PersistentDrawerRight() {
             <CssBaseline />
             <AppBar
                 position="fixed"
-                color="primary"
+                color="secondary"
                 className={clsx(classes.appBar, {
                     [classes.appBarShift]: open,
                 })}
@@ -104,7 +104,8 @@ export default function PersistentDrawerRight() {
                 <Toolbar>
                     <Typography variant="h6" noWrap className={classes.title}>
                         Persistent drawer
-                    </Typography>                    <IconButton
+                    </Typography>                    
+                    <IconButton
                         color="inherit"
                         aria-label="open drawer"
                         edge="end"
