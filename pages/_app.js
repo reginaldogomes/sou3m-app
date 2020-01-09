@@ -1,39 +1,43 @@
 import React from 'react'
-import NextApp from 'next/app'
+import App from 'next/app'
 import Head from 'next/head'
-
-import { createMuiTheme } from '@material-ui/core/styles'
-import red from '@material-ui/core/colors/red'
+import { ThemeProvider } from 'styled-components'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Drawer from '@material-ui/core/Drawer'
-
-import { ThemeProvider } from 'styled-components'
 import theme from '../src/theme'
 
 import NavBar from '../components/NavBar/NavBar'
 
-const HeadScripts = () => (
-    <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-        />
-    </Head>
-)
+export default class MyApp extends App {
+    componentDidMount() {
+        // Remove the server-side injected CSS.
+        const jssStyles = document.querySelector('#jss-server-side');
+        if (jssStyles) {
+            jssStyles.parentElement.removeChild(jssStyles);
+        }
+    }
 
-export default class App extends NextApp {
     render() {
-
-        const { Component, pageProps } = this.props
+        const { Component, pageProps } = this.props;
 
         return (
-            <ThemeProvider theme={theme}>
-                <HeadScripts />
-                <NavBar />
-                <Component {...pageProps} />
-                <Drawer />
-            </ThemeProvider>
-        )
+            <React.Fragment>
+                <Head>
+                    <title>My page</title>
+                    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+                    <link
+                        rel="stylesheet"
+                        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+                    />
+                </Head>
+                <ThemeProvider theme={theme}>
+                    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                    <CssBaseline />
+                    <NavBar />
+                    <Component {...pageProps} />
+                    <Drawer />
+                </ThemeProvider>
+            </React.Fragment>
+        );
     }
 }
