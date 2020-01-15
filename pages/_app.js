@@ -7,13 +7,14 @@ import Drawer from '@material-ui/core/Drawer'
 import theme from '../src/theme'
 
 import NavBar from '../components/NavBar/NavBar'
+import Footer from '../components/Footer'
 
 export default class MyApp extends App {
     componentDidMount() {
         // Remove the server-side injected CSS.
-        const jssStyles = document.querySelector('#jss-server-side');
+        const jssStyles = document.querySelector('#jss-server-side')
         if (jssStyles) {
-            jssStyles.parentElement.removeChild(jssStyles);
+            jssStyles.parentElement.removeChild(jssStyles)
         }
     }
 
@@ -23,21 +24,24 @@ export default class MyApp extends App {
         return (
             <React.Fragment>
                 <Head>
-                    <title>My page</title>
-                    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+                    <title>Sou 3M - Ecoturismo em Três Marias / MG.</title>
+                    <meta 
+                        name="viewport" 
+                        content="minimum-scale=1, initial-scale=1, width=device-width" 
+                    />
                     <link
                         rel="stylesheet"
                         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
                     />
                 </Head>
                 <ThemeProvider theme={theme}>
-                    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                     <CssBaseline />
                     <NavBar />
                     <Component {...pageProps} />
                     <Drawer />
+                    <Footer />
                 </ThemeProvider>
             </React.Fragment>
-        );
+        )
     }
 }
