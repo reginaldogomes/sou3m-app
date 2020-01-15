@@ -8,6 +8,7 @@ const Contact = () => (
 )
 
 const Container = styled.div`
+  display: flex;
   width: 960px;
   height: 100vh;
   margin: 2rem auto;
