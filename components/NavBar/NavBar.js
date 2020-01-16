@@ -1,6 +1,5 @@
 import React from 'react'
 import clsx from 'clsx'
-import Link from 'next/link'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import AppBar from '@material-ui/core/AppBar'
@@ -18,18 +17,26 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import InboxIcon from '@material-ui/icons/MoveToInbox'
 import MailIcon from '@material-ui/icons/Mail'
+import Link from '@material-ui/core/Link'
+
+const links = [
+    { label: 'Home', href: '/', icon: '<InboxIcon />' },
+    { label: 'Contato', href: '/contact', icon: '<InboxIcon />' },
+]
 
 const drawerWidth = 240
 
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
+        paddingTop: 60
     },
     appBar: {
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
+        background: '#cf7010'
     },
     appBarShift: {
         width: `calc(100% - ${drawerWidth}px)`,
@@ -41,6 +48,7 @@ const useStyles = makeStyles(theme => ({
     },
     title: {
         flexGrow: 1,
+        marginTop: 7
     },
     hide: {
         display: 'none',
@@ -96,15 +104,15 @@ export default function PersistentDrawerRight() {
             <CssBaseline />
             <AppBar
                 position="fixed"
-                color="secondary"
+                color="primary"
                 className={clsx(classes.appBar, {
                     [classes.appBarShift]: open,
                 })}
             >
                 <Toolbar>
                     <Typography variant="h6" noWrap className={classes.title}>
-                        Persistent drawer
-                    </Typography>                    
+                        <img src="/images/logo.svg" width="120" />
+                    </Typography>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -132,22 +140,24 @@ export default function PersistentDrawerRight() {
                 </div>
                 <Divider />
                 <List>
-                    {['Home', 'Cachoeiras', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
+                    <ListItem button component={Link} href="/">
+                        <ListItemIcon><InboxIcon /></ListItemIcon>
+                        <ListItemText primary="Home" />
+                    </ListItem>
+                    <ListItem button component={Link} href="/contact">
+                        <ListItemIcon><MailIcon /></ListItemIcon>
+                        <ListItemText primary="Contato" />
+                    </ListItem>
+                    {/*['Home', 'Cachoeiras', 'Empresas', 'Contato'].map((text, index) => (
+                        <Link href="/contact">
+                            <ListItem button key={text}>
+                                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                                <ListItemText primary={text} />
+                            </ListItem>
+                        </Link>
+                    ))*/}
                 </List>
                 <Divider />
-                <List>
-                    {['All mail', 'Trash', 'Contato'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
             </Drawer>
         </div>
     )
